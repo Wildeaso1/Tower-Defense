@@ -91,7 +91,7 @@ Material:
     - _Cutoff: 0.5
     - _DebugGroup: 0
     - _DepthOffset: 1
-    - _DetailColorSetting: 0
+    - _DetailColorSetting: 2
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _EditorVersion: 1
@@ -100,14 +100,14 @@ Material:
     - _EnableColorReplacer: 0
     - _EnableDebug: 0
     - _EnableOutline: 0
-    - _EnableRimlight: 1
+    - _EnableRimlight: 0
     - _Factor: 0
     - _FailFront: 0
     - _FakeGlobalLightIntensity: 0.4
     - _FakeLightDirX: 35
     - _FakeLightDirY: -135
     - _FallbackLightDirection: 0
-    - _GlobalLightPush: 0.85
+    - _GlobalLightPush: 0.81
     - _GlossMapScale: 1
     - _Glossiness: 0
     - _GlossyReflections: 1
@@ -131,10 +131,10 @@ Material:
     - _OutlineThickness: 0
     - _Parallax: 0.02
     - _PassFront: 0
-    - _PermanentShadowThreshold: 0.238
+    - _PermanentShadowThreshold: 0
     - _ReadMask: 255
     - _Reference: 0
-    - _RimlightSize: 0.4
+    - _RimlightSize: 0.346
     - _SSSHueShift1: 0
     - _SSSHueShift2: 0
     - _SSSHueShift3: 0
@@ -143,13 +143,13 @@ Material:
     - _Shadow1EmissionIntensity: 1
     - _Shadow1EmissiveToggle: 0
     - _Shadow1Intensity: 1
-    - _Shadow1Push: 0.5
+    - _Shadow1Push: 0.61
     - _Shadow1Saturation: 1
     - _Shadow1VertexRThreshold: 0.5
     - _Shadow2EmissionIntensity: 1
     - _Shadow2EmissiveToggle: 0
     - _Shadow2Intensity: 1
-    - _Shadow2Push: 0.2
+    - _Shadow2Push: 0.33
     - _Shadow2Saturation: 1
     - _Shadow2VertexRThreshold: 0.1
     - _ShadowRimlightEmissionIntensity: 1
@@ -166,8 +166,8 @@ Material:
     - _SpecularEmissiveToggle: 0
     - _SpecularHighlights: 1
     - _SpecularIntensity: 1
-    - _SpecularSaturation: 1
-    - _SpecularSize: 0.3
+    - _SpecularSaturation: 0
+    - _SpecularSize: 0.138
     - _SrcBlend: 1
     - _TotalReplacements: 0
     - _UVSec: 0
@@ -177,23 +177,23 @@ Material:
     - _ViewDirOffsetYaw: 0
     - _WriteMask: 255
     - _ZFailFront: 0
-    - _ZTestMode: 4
+    - _ZTestMode: 0
     - _ZWrite: 1
-    - _ZWriteMode: 1
+    - _ZWriteMode: 0
     m_Colors:
     - _AmbientColor: {r: 1, g: 1, b: 1, a: 0}
     - _BaseTint: {r: 1, g: 1, b: 1, a: 0}
-    - _BodyLinesColor: {r: 0, g: 1, b: 0, a: 0}
+    - _BodyLinesColor: {r: 0, g: 0, b: 0, a: 0}
     - _Color: {r: 0.8, g: 0.8, b: 0.8, a: 1}
     - _DebugColor: {r: 1, g: 1, b: 1, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _FakeGlobalLightColor: {r: 1, g: 1, b: 1, a: 0}
     - _HighlightRimlightTint: {r: 1, g: 1, b: 1, a: 0}
-    - _ILMAlphaColor: {r: 1, g: 0, b: 0, a: 0}
+    - _ILMAlphaColor: {r: 0, g: 0, b: 0, a: 0}
     - _LightColor: {r: 1, g: 1, b: 1, a: 0}
     - _OutlineColor: {r: 0, g: 0, b: 0, a: 0}
     - _Shadow1Tint: {r: 1, g: 1, b: 1, a: 0}
-    - _Shadow2Tint: {r: 1, g: 1, b: 1, a: 0}
+    - _Shadow2Tint: {r: 0, g: 0, b: 0, a: 0}
     - _ShadowRimlightBaseColor: {r: 0.23921567, g: 0.23921567, b: 0.5294118, a: 0}
     - _ShadowRimlightTint: {r: 1, g: 1, b: 1, a: 0}
     - _Source1Color: {r: 1, g: 1, b: 1, a: 0}

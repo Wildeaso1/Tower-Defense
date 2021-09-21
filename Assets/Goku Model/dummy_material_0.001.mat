@@ -66,10 +66,10 @@ Material:
     m_Floats:
     - _BumpScale: 1
     - _Cutoff: 0.5
-    - _DepthOffset: 1
+    - _DepthOffset: 2.85
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
-    - _EnableBaseColorMult: 1
+    - _EnableBaseColorMult: 0
     - _EnableCameraDistanceMult: 1
     - _GlossMapScale: 1
     - _Glossiness: 0
@@ -78,7 +78,7 @@ Material:
     - _Mode: 0
     - _OcclusionStrength: 1
     - _OutlineColorIntensity: 1
-    - _OutlineThickness: 0.27
+    - _OutlineThickness: 1.2
     - _Parallax: 0.02
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
