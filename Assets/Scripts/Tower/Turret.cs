@@ -16,12 +16,14 @@ public class Turret : MonoBehaviour
     [SerializeField] private GameObject BulletPrefab;
     [SerializeField] private Transform BulletSpawn;
 
-    
+    [Header("Animation Setup")]
+    private Animator anim;
 
     // Start is called before the first frame update
     void Start()
     {
         InvokeRepeating("UpdateTarget", 0f, 0.5f);
+        anim = GetComponent<Animator>();
     }
 
     void UpdateTarget()
@@ -45,10 +47,12 @@ public class Turret : MonoBehaviour
 		if (nearestEnemy != null && shortestDistance <= range)
 		{
             target = nearestEnemy.transform;
+            anim.SetBool("Kamehameha", true);
 		}
 		else
 		{
             target = null;
+            
 		}
 	}
 
@@ -57,6 +61,7 @@ public class Turret : MonoBehaviour
     {
         if (target == null)
 		{
+            anim.SetBool("Kamehameha", false);
             return;
 		}
 
@@ -75,8 +80,10 @@ public class Turret : MonoBehaviour
 
         if (target == null)
 		{
+            
             return;
 		}
+        
         GameObject BulletGo = (GameObject)Instantiate(BulletPrefab, BulletSpawn.position, BulletSpawn.rotation);
         Bullet bullet = BulletGo.GetComponent<Bullet>();
 
