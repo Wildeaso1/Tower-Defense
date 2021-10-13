@@ -7,6 +7,7 @@ public class Node : MonoBehaviour
 {
 	[Header("Color Attributes")]
 	[SerializeField] private Color hoverColor;
+	[SerializeField] private Color unableToBuyColor;
 	private Renderer rend;
 	private Color startColor;
 
@@ -58,7 +59,15 @@ public class Node : MonoBehaviour
 		{
 			return;
 		}
-		rend.material.color = hoverColor;
+		if (buildManager.HasMoney)
+		{
+			rend.material.color = hoverColor;
+		}
+		else
+		{
+			rend.material.color = unableToBuyColor;
+		}
+
 	}
 
 	void OnMouseExit()

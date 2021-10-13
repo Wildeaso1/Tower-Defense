@@ -6,6 +6,7 @@ public class Bullet : MonoBehaviour
 {
     [SerializeField] private Transform target;
     [SerializeField] private float Speed;
+	[SerializeField] private int HitDamage;
 
     public void Seek(Transform _target)
 	{
@@ -40,9 +41,19 @@ public class Bullet : MonoBehaviour
 		transform.Translate(dir.normalized * distanceThisFrame, Space.World);
 	}
 
+	void Damage(Transform enemy)
+	{
+		EnemyMovement e = enemy.GetComponent<EnemyMovement>();
+
+		if (e != null)
+		{
+			e.TakeDamage(HitDamage);
+		}
+	}
+
     void HitTarget()
 	{
-		Destroy(target.gameObject);
+		Damage(target);
 		Destroy(gameObject);
 	}
 }

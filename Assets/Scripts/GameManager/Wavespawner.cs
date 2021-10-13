@@ -1,16 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Wavespawner : MonoBehaviour
 {
 	public GameObject EnemyPrefab;
 
+	[Header("Wave Setup")]
 	[SerializeField] private float minSpeed;
 	[SerializeField] private float maxSpeed;
 	[SerializeField] private Transform Spawnpoint;
 	[SerializeField] private float waveTime;
 	[SerializeField] private float Countdown;
+	[SerializeField] private Text Wavetext;
 
 	private int waveIndex = 1;
 	private float enemyInterval;
@@ -25,6 +28,11 @@ public class Wavespawner : MonoBehaviour
 		}
 
 		Countdown -= Time.deltaTime;
+
+		Countdown = Mathf.Clamp(Countdown, 0f, Mathf.Infinity);
+
+		Wavetext.text = string.Format("{0:00:00}", Countdown);
+		
 	}
 
 	IEnumerator SpawnWave()

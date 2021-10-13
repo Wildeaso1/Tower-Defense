@@ -5,9 +5,12 @@ using UnityEngine;
 public class EnemyMovement : MonoBehaviour
 {
 	public float Speed = 10f;
+
+	[SerializeField] private int health;
 	private Transform target;
 	private int waypointindex = 0;
 	[SerializeField] private float threshold;
+
 
 	private void Start()
 	{
@@ -34,11 +37,32 @@ public class EnemyMovement : MonoBehaviour
 	{
 		if (waypointindex >= Waypoints.Waypoint.Length - 1)
 		{
-			Destroy(gameObject);
+			EndPath();
 			return;
 		}
 
 		waypointindex++;
 		target = Waypoints.Waypoint[waypointindex];
+	}
+
+	public void TakeDamage(int amount)
+	{
+		health -= amount;
+
+		if (health <= 0)
+		{
+			Die();
+		}
+	}
+
+	void Die()
+	{
+		Destroy(this.gameObject);
+	}
+
+	void EndPath()
+	{
+		Destroy(gameObject);
+		PlayerStats.Health--;
 	}
 }
