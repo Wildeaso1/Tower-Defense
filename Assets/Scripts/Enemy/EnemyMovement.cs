@@ -2,32 +2,33 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Enemy))]
 public class EnemyMovement : MonoBehaviour
 {
-	public float Speed = 10f;
-
-	[SerializeField] private int health;
-	private Transform target;
+	[SerializeField] private float Threshold;
 	private int waypointindex = 0;
-	[SerializeField] private float threshold;
-
+	private Transform target;
+	private Enemy enemy;
 
 	private void Start()
 	{
+		enemy = GetComponent<Enemy>();
+
 		target = Waypoints.Waypoint[0];
 	}
 
 	private void Update()
 	{
 		Moveto();
+		enemy.Speed = enemy.Startspeed;
 	}
 
 	void Moveto()
 	{
 		Vector3 dir = target.position - transform.position;
-		transform.Translate(dir.normalized * Speed * Time.deltaTime, Space.World);
+		transform.Translate(dir.normalized * enemy.Speed * Time.deltaTime, Space.World);
 
-		if (Vector3.Distance(transform.position, target.position) <= threshold)
+		if (Vector3.Distance(transform.position, target.position) <= Threshold)
 		{
 			GetNextWayPoint();
 		}
@@ -44,22 +45,6 @@ public class EnemyMovement : MonoBehaviour
 		waypointindex++;
 		target = Waypoints.Waypoint[waypointindex];
 	}
-
-	public void TakeDamage(int amount)
-	{
-		health -= amount;
-
-		if (health <= 0)
-		{
-			Die();
-		}
-	}
-
-	void Die()
-	{
-		Destroy(this.gameObject);
-	}
-
 	void EndPath()
 	{
 		Destroy(gameObject);

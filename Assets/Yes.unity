@@ -403,8 +403,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EnemyPrefab: {fileID: 8680334321548583945, guid: 5631d2e19fdcdcd478dbaae4cd7b4238, type: 3}
-  minSpeed: 3
-  maxSpeed: 6
+  minSpeed: 2
+  maxSpeed: 4
   Spawnpoint: {fileID: 997974262}
   waveTime: 20
   Countdown: 10

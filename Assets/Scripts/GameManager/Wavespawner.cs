@@ -51,6 +51,6 @@ public class Wavespawner : MonoBehaviour
 	void SpawnEnemy()
 	{
 		GameObject NewEnemy = Instantiate(EnemyPrefab, Spawnpoint.position, Spawnpoint.rotation);
-		NewEnemy.GetComponent<EnemyMovement>().Speed = Random.Range(minSpeed, maxSpeed);
+		NewEnemy.GetComponent<Enemy>().Speed = Random.Range(minSpeed, maxSpeed);
 	}
 }

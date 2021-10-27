@@ -6,7 +6,7 @@ public class Bullet : MonoBehaviour
 {
     [SerializeField] private Transform target;
     [SerializeField] private float Speed;
-	[SerializeField] private int HitDamage;
+	[SerializeField] private float HitDamage;
 
     public void Seek(Transform _target)
 	{
@@ -43,7 +43,7 @@ public class Bullet : MonoBehaviour
 
 	void Damage(Transform enemy)
 	{
-		EnemyMovement e = enemy.GetComponent<EnemyMovement>();
+		Enemy e = enemy.GetComponent<Enemy>();
 
 		if (e != null)
 		{

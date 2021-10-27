@@ -7,14 +7,22 @@ public class Turret : MonoBehaviour
 
     [Header("Enemy Setup")]
     [SerializeField] private Transform target;
-    [SerializeField] private float range = 15f;
     [SerializeField] private Transform Rotatepart;
     [SerializeField] private float turnSpeed = 10f;
+    private Enemy targetEnemy;
     public string enemyTag = "Enemy";
 
-    [Header("Shooting Setup")]
+    [Header("Shooting Setup (General)")]
     [SerializeField] private GameObject BulletPrefab;
-    [SerializeField] private Transform BulletSpawn;
+    [SerializeField] private Transform FirePoint;
+    [SerializeField] private float range = 15f;
+
+    [Header("Kamehameha Setup")]
+    [SerializeField] private bool Kamehameha = false;
+    [SerializeField] private float DamageOverTime;
+    [SerializeField] private float slowAmount;
+    public LineRenderer lineRenderer;
+    private bool ShootingKame = false;
 
     [Header("Animation Setup")]
     private Animator anim;
@@ -22,6 +30,7 @@ public class Turret : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        lineRenderer.enabled = false;
         InvokeRepeating("UpdateTarget", 0f, 0.5f);
         anim = GetComponent<Animator>();
     }
@@ -47,6 +56,7 @@ public class Turret : MonoBehaviour
 		if (nearestEnemy != null && shortestDistance <= range)
 		{
             target = nearestEnemy.transform;
+            targetEnemy = nearestEnemy.GetComponent<Enemy>();
             anim.SetBool("Kamehameha", true);
 		}
 		else
@@ -61,11 +71,29 @@ public class Turret : MonoBehaviour
     {
         if (target == null)
 		{
+			if (Kamehameha)
+			{
+				if (lineRenderer.enabled)
+				{
+                    DisableKamehameha();
+                    lineRenderer.enabled = false;
+				}
+			}
+
             anim.SetBool("Kamehameha", false);
             return;
 		}
 
         LookAtEnemy();
+
+		if (ShootingKame)
+		{
+            ShootingKamehameha();
+		}
+		else
+		{
+            return;
+		}
 
     }
 
@@ -84,7 +112,7 @@ public class Turret : MonoBehaviour
             return;
 		}
         
-        GameObject BulletGo = (GameObject)Instantiate(BulletPrefab, BulletSpawn.position, BulletSpawn.rotation);
+        GameObject BulletGo = (GameObject)Instantiate(BulletPrefab, FirePoint.position, FirePoint.rotation);
         Bullet bullet = BulletGo.GetComponent<Bullet>();
 
 		if (bullet != null)
@@ -100,4 +128,29 @@ public class Turret : MonoBehaviour
         Vector3 rotation = Quaternion.Lerp(Rotatepart.rotation, lookRotation, Time.deltaTime * turnSpeed).eulerAngles;
         Rotatepart.rotation = Quaternion.Euler(-90f, rotation.y, 53f);
     }
+
+    void ShootingKamehameha()
+	{
+        targetEnemy.TakeDamage(DamageOverTime * Time.deltaTime);
+
+        targetEnemy.Slow(slowAmount);
+
+        lineRenderer.enabled = true;
+
+        lineRenderer.SetPosition(0, FirePoint.position);
+        lineRenderer.SetPosition(1, target.position);
+    }
+
+    void UseKamehameha()
+	{
+        anim.speed = 0;
+        ShootingKame = true;
+    }
+
+    void DisableKamehameha()
+	{
+        ShootingKame = false;
+        anim.speed = 1;
+        lineRenderer.enabled = false;
+	}
 }
