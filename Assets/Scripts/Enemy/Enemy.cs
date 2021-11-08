@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+	[Header("Speed")]
 	public float Speed;
 	public float Startspeed;
 
