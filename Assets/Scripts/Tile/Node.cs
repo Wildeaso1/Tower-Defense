@@ -12,8 +12,11 @@ public class Node : MonoBehaviour
 	private Color startColor;
 
 	[Header("Turret Attributes")]
-	public GameObject GokuTurret;
+	public GameObject Tower;
 	[SerializeField] private Vector3 positionOffset;
+
+	public TurretBlueprint turretBlueprint;
+	public bool isUpgraded = false;
 
 
 	BuildManagement buildManager;
@@ -33,18 +36,64 @@ public class Node : MonoBehaviour
 
 	void OnMouseDown()
 	{
+		if (EventSystem.current.IsPointerOverGameObject())
+		{
+			return;
+		}
+
 		if (!buildManager.CanBuild)
 		{
 			return;
 		}
 
-		if (GokuTurret != null)
+		if (Tower != null)
 		{
-			Debug.Log("Can't build here! Sorry bud!");
+			buildManager.SelectNode(this);
 			return;
 		}
 
-		buildManager.BuildTurretOn(this);
+		BuildTurret(buildManager.GetTurretToBuild());
+	}
+
+	void BuildTurret(TurretBlueprint blueprint)
+	{
+		if (PlayerStats.Money < blueprint.cost)
+		{
+			Debug.Log("No money!");
+			return;
+		}
+
+		turretBlueprint = blueprint;
+
+		PlayerStats.Money -= blueprint.cost;
+		GameObject turret = (GameObject)Instantiate(blueprint.Tower, GetBuildPosition(), Quaternion.identity);
+		Tower = turret;
+
+	}
+
+	public void UpgradeTurret()
+	{
+		if (PlayerStats.Money < turretBlueprint.upgradeCost)
+		{
+			Debug.Log("No money!");
+			return;
+		}
+
+		Destroy(Tower);
+
+		PlayerStats.Money -= turretBlueprint.upgradeCost;
+		GameObject turret = (GameObject)Instantiate(turretBlueprint.UpgradedTower, GetBuildPosition(), Quaternion.identity);
+		Tower = turret;
+
+		isUpgraded = true;
+
+	}
+
+	public void SellTurret()
+	{
+		PlayerStats.Money += turretBlueprint.GetSellAmount();
+
+		Destroy(Tower);
 	}
 
 	//Zorgt voor de color change

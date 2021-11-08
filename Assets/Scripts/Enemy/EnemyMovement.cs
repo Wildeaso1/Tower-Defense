@@ -6,6 +6,7 @@ using UnityEngine;
 public class EnemyMovement : MonoBehaviour
 {
 	[SerializeField] private float Threshold;
+	[SerializeField] 
 	private int waypointindex = 0;
 	private Transform target;
 	private Enemy enemy;
@@ -48,6 +49,7 @@ public class EnemyMovement : MonoBehaviour
 	void EndPath()
 	{
 		Destroy(gameObject);
-		PlayerStats.Health--;
+		PlayerStats.Health -= enemy.damage;
+
 	}
 }

@@ -15,11 +15,11 @@ public class Gamover : MonoBehaviour
 
 	public void Retry()
 	{
-		SceneManager.LoadScene(0);
+		SceneManager.LoadScene(1);
 	}
 
 	public void MainMenu()
 	{
-		SceneManager.LoadScene(1);
+		SceneManager.LoadScene(0);
 	}
 }

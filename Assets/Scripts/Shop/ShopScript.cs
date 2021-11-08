@@ -5,7 +5,8 @@ using UnityEngine;
 public class ShopScript : MonoBehaviour
 {
 	BuildManagement buildManagement;
-	public TurretBlueprint GokuTower;
+	public TurretBlueprint Goku;
+	public TurretBlueprint Gohan;
 
 	void Start()
 	{
@@ -14,6 +15,10 @@ public class ShopScript : MonoBehaviour
 	public void SelectGokuTurret()
 	{
 		Debug.Log("Goku purchased");
-		buildManagement.SelectTurretToBuild(GokuTower);
+		buildManagement.SelectTurretToBuild(Goku);
+	}
+	public void SelectGohanTurret()
+	{
+		buildManagement.SelectTurretToBuild(Gohan);
 	}
 }

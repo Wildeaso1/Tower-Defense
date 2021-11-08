@@ -110,7 +110,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Speed: 10
-  Worth: 50
+  Startspeed: 0
+  Worth: 25
+  damage: 0
   Health: 20
 --- !u!114 &-366785184760970899
 MonoBehaviour:
@@ -125,3 +127,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Threshold: 0.1
+  waypointindex: 0

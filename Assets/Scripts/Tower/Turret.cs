@@ -17,12 +17,12 @@ public class Turret : MonoBehaviour
     [SerializeField] private Transform FirePoint;
     [SerializeField] private float range = 15f;
 
-    [Header("Kamehameha Setup")]
-    [SerializeField] private bool Kamehameha = false;
+    [Header("Beam Setup")]
+    [SerializeField] private bool UsingBeam = false;
     [SerializeField] private float DamageOverTime;
     [SerializeField] private float slowAmount;
     public LineRenderer lineRenderer;
-    private bool ShootingKame = false;
+    private bool ShootingBeam = false;
 
     [Header("Animation Setup")]
     private Animator anim;
@@ -71,7 +71,7 @@ public class Turret : MonoBehaviour
     {
         if (target == null)
 		{
-			if (Kamehameha)
+			if (UsingBeam)
 			{
 				if (lineRenderer.enabled)
 				{
@@ -80,13 +80,14 @@ public class Turret : MonoBehaviour
 				}
 			}
 
+            DisableKamehameha();
             anim.SetBool("Kamehameha", false);
             return;
 		}
 
         LookAtEnemy();
 
-		if (ShootingKame)
+		if (ShootingBeam)
 		{
             ShootingKamehameha();
 		}
@@ -144,12 +145,12 @@ public class Turret : MonoBehaviour
     void UseKamehameha()
 	{
         anim.speed = 0;
-        ShootingKame = true;
+        ShootingBeam = true;
     }
 
     void DisableKamehameha()
 	{
-        ShootingKame = false;
+        ShootingBeam = false;
         anim.speed = 1;
         lineRenderer.enabled = false;
 	}

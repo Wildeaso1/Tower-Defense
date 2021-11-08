@@ -9,6 +9,7 @@ public class GameManagerScript : MonoBehaviour
 
 	private void Start()
 	{
+		Time.timeScale = 1f;
 		GameEnded = false;
 	}
 
@@ -16,6 +17,7 @@ public class GameManagerScript : MonoBehaviour
 	{
 		if (GameEnded)
 		{
+			Time.timeScale = 0f;
 			return;
 		}
 
@@ -28,7 +30,6 @@ public class GameManagerScript : MonoBehaviour
 	void EndGame()
 	{
 		GameEnded = true;
-		Debug.Log("The End");
 		GameOverUI.SetActive(true);
 	}
 

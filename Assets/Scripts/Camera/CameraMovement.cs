@@ -13,19 +13,11 @@ public class CameraMovement : MonoBehaviour
 
     void Update()
     {
-		if (!doMove)
-		{
-            return;
-		}
         Movement();
     }
 
     void Movement()
 	{
-		if (Input.GetKeyDown(KeyCode.Escape))
-		{
-            doMove = !doMove;
-		}
 
         if (Input.GetKey("w") )
 		{

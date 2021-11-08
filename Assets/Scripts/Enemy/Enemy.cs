@@ -8,8 +8,9 @@ public class Enemy : MonoBehaviour
 	public float Speed;
 	public float Startspeed;
 
-	[SerializeField] private int Worth;
-	[SerializeField] private float Health;
+	public int Worth;
+	public int damage;
+	public float Health;
 
 	private void Start()
 	{

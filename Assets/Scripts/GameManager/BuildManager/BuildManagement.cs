@@ -7,8 +7,13 @@ public class BuildManagement : MonoBehaviour
 	public static BuildManagement instance;
 
 	public GameObject GokuTower;
-	public GameObject SeccondTower;
+	public GameObject GohanTower;
+
 	private TurretBlueprint turretToBuild;
+	private Node SelectedNode;
+
+	public NodeUI nodeUI;
+
 	void Awake()
 	{
 		if (instance != null)
@@ -21,22 +26,34 @@ public class BuildManagement : MonoBehaviour
 	public bool CanBuild { get { return turretToBuild != null; } }
 	public bool HasMoney { get { return PlayerStats.Money >= turretToBuild.cost; } }
 
-	public void BuildTurretOn(Node node)
+	public void SelectNode(Node node)
 	{
-		if (PlayerStats.Money < turretToBuild.cost)
+		if (SelectedNode == node)
 		{
-			Debug.Log("No money!");
+			DeselectNode();
 			return;
 		}
 
-		PlayerStats.Money -= turretToBuild.cost;
-		GameObject turret = (GameObject)Instantiate(turretToBuild.Tower, node.GetBuildPosition(), Quaternion.identity);
-		node.GokuTurret = turret; 
+		SelectedNode = node;
+		turretToBuild = null;
 
+		nodeUI.setTarget(node);
 	}
 
-	public void SelectTurretToBuild (TurretBlueprint turret)
+	public void DeselectNode()
+	{
+		SelectedNode = null;
+		nodeUI.Hide();
+	}
+
+	public void SelectTurretToBuild(TurretBlueprint turret)
 	{
 		turretToBuild = turret;
+		DeselectNode();
+	}
+
+	public TurretBlueprint GetTurretToBuild()
+	{
+		return turretToBuild;
 	}
 }
